@@ -78,55 +78,68 @@ fun MainContentArea(
     content: @Composable ColumnScope.() -> Unit
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White)
-            .padding(24.dp),
-        verticalArrangement = Arrangement.spacedBy(24.dp)
+        modifier = Modifier.fillMaxSize()
     ) {
-        // Header
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = title,
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF333333)
-            )
-            
-            // Search Bar
-            var searchText by remember { mutableStateOf("") }
-            OutlinedTextField(
-                value = searchText,
-                onValueChange = { searchText = it },
-                placeholder = {
-                    Text(
-                        text = "Search",
-                        color = Color.Gray,
-                        fontSize = 14.sp
-                    )
-                },
-                trailingIcon = {
-                    SearchIcon()
-                },
-                modifier = Modifier
-                    .width(300.dp)
-                    .height(40.dp),
-                shape = RoundedCornerShape(8.dp),
-                colors = OutlinedTextFieldDefaults.colors(
-                    unfocusedContainerColor = Color(0xFFF5F5F5),
-                    focusedContainerColor = Color(0xFFF5F5F5),
-                    unfocusedBorderColor = Color.Transparent,
-                    focusedBorderColor = Color.Transparent
-                ),
-                singleLine = true
-            )
-        }
+        // Green top section
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(80.dp)
+                .background(Color(0xFF112FFF)) // Green color
+        )
         
-        content()
+        Column(
+
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White)
+                .padding(24.dp),
+            verticalArrangement = Arrangement.spacedBy(24.dp)
+        ) {
+            // Header
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = title,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF333333)
+                )
+                
+                // Search Bar
+                var searchText by remember { mutableStateOf("") }
+                OutlinedTextField(
+                    value = searchText,
+                    onValueChange = { searchText = it },
+                    placeholder = {
+                        Text(
+                            text = "Search",
+                            color = Color.Gray,
+                            fontSize = 14.sp
+                        )
+                    },
+                    trailingIcon = {
+                        SearchIcon()
+                    },
+                    modifier = Modifier
+                        .width(300.dp)
+                        .height(40.dp),
+                    shape = RoundedCornerShape(8.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        unfocusedContainerColor = Color(0xFFF5F5F5),
+                        focusedContainerColor = Color(0xFFF5F5F5),
+                        unfocusedBorderColor = Color.Transparent,
+                        focusedBorderColor = Color.Transparent
+                    ),
+                    singleLine = true
+                )
+            }
+            
+            content()
+        }
     }
 }
 
