@@ -18,7 +18,10 @@ fun DashboardScreen() {
         )
         
         when (selectedMenuItem) {
-            "Dashboard" -> MainContentArea(title = "Welcome to Tabaarak ICT") {
+            "Dashboard" -> MainContentArea(title = " ") {
+                // Welcome Card
+                WelcomeCard()
+                
                 // Statistics Cards
                 Row(
                     modifier = Modifier.fillMaxWidth(),

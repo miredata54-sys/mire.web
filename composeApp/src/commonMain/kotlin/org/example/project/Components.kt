@@ -1,5 +1,6 @@
 package org.example.project
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -11,10 +12,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.jetbrains.compose.resources.painterResource
+import mire_data_app.composeapp.generated.resources.Res
+import mire_data_app.composeapp.generated.resources.graduation_cap
 
 @Composable
 fun Sidebar(
@@ -80,16 +86,8 @@ fun MainContentArea(
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        // Green top section
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(80.dp)
-                .background(Color(0xFF112FFF)) // Green color
-        )
         
         Column(
-
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color.White)
@@ -201,6 +199,88 @@ fun StatCard(
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color(0xFF333333)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun WelcomeCard(
+    modifier: Modifier = Modifier
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(200.dp)
+            .clip(RoundedCornerShape(20.dp))
+            .shadow(4.dp, RoundedCornerShape(20.dp))
+    ) {
+        // Purple gradient background
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    brush = Brush.horizontalGradient(
+                        colors = listOf(
+                            Color(0xFF8B5CF6), // Darker purple on left
+                            Color(0xFFC4B5FD)  // Lighter purple on right
+                        )
+                    )
+                )
+        )
+        
+        // Content Row
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 32.dp, vertical = 24.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // Left side - Text content
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                // Date
+                Text(
+                    text = "September 4, 2023",
+                    fontSize = 13.sp,
+                    color = Color(0xFFE9D5FF).copy(alpha = 0.85f), // Light grey/purple
+                    fontWeight = FontWeight.Medium
+                )
+                
+                // Welcome message
+                Text(
+                    text = "Welcome back, John!",
+                    fontSize = 32.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                    lineHeight = 38.sp
+                )
+                
+                // Subtitle
+                Text(
+                    text = "Always stay updated in your student portal",
+                    fontSize = 15.sp,
+                    color = Color.White.copy(alpha = 0.95f),
+                    fontWeight = FontWeight.Normal
+                )
+            }
+            
+            // Right side - Graduation cap icon
+            Box(
+                modifier = Modifier
+                    .size(120.dp)
+                    .offset(x = 16.dp), // Slightly overlapping the edge
+                contentAlignment = Alignment.Center
+            ) {
+                Image(
+                    painter = painterResource(Res.drawable.graduation_cap),
+                    contentDescription = "Graduation Cap",
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Fit
                 )
             }
         }

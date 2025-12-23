@@ -1,14 +1,21 @@
 package org.example.project
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.shape.CircleShape
+import org.jetbrains.compose.resources.painterResource
+import mire_data_app.composeapp.generated.resources.Res
+import mire_data_app.composeapp.generated.resources.coat_of_arms_of_somalia_1__1_
 
 @Composable
 fun PersonIcon(modifier: Modifier = Modifier) {
@@ -81,38 +88,17 @@ fun PadlockIcon(modifier: Modifier = Modifier) {
 @Composable
 fun EducationIcon(modifier: Modifier = Modifier) {
     Box(
-        modifier = modifier.size(40.dp),
+        modifier = modifier
+            .size(100.dp)
+
+            .background(Color.White),
         contentAlignment = Alignment.Center
     ) {
-        Canvas(modifier = Modifier.fillMaxSize()) {
-            val path = Path().apply {
-                // Person sitting at desk
-                // Head
-                addOval(androidx.compose.ui.geometry.Rect(
-                    center.x - 8.dp.toPx(),
-                    center.y - 18.dp.toPx(),
-                    center.x + 8.dp.toPx(),
-                    center.y - 2.dp.toPx()
-                ))
-                // Body
-                moveTo(center.x - 10.dp.toPx(), center.y - 2.dp.toPx())
-                lineTo(center.x + 10.dp.toPx(), center.y - 2.dp.toPx())
-                lineTo(center.x + 8.dp.toPx(), center.y + 10.dp.toPx())
-                lineTo(center.x - 8.dp.toPx(), center.y + 10.dp.toPx())
-                close()
-                // Desk (book)
-                moveTo(center.x - 12.dp.toPx(), center.y + 10.dp.toPx())
-                lineTo(center.x + 12.dp.toPx(), center.y + 10.dp.toPx())
-                lineTo(center.x + 12.dp.toPx(), center.y + 14.dp.toPx())
-                lineTo(center.x - 12.dp.toPx(), center.y + 14.dp.toPx())
-                close()
-            }
-            drawPath(
-                path = path,
-                color = Color.White,
-                style = Stroke(width = 2.5.dp.toPx())
-            )
-        }
+        Image(
+            painter = painterResource(Res.drawable.coat_of_arms_of_somalia_1__1_),
+            contentDescription = "Coat of arms of Somalia",
+            modifier = Modifier.size(70.dp)
+        )
     }
 }
 
