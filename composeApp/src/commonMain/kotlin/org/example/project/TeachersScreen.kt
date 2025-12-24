@@ -20,7 +20,7 @@ data class Teacher(
 fun TeachersScreen() {
 
     var teachers by remember { mutableStateOf(listOf<Teacher>()) }
-    var showForm by remember { mutableStateOf(false) }
+    var showDialog by remember { mutableStateOf(false) }
     var editIndex by remember { mutableStateOf<Int?>(null) }
     var searchQuery by remember { mutableStateOf("") }
 
@@ -37,27 +37,109 @@ fun TeachersScreen() {
 
     MainContentArea(title = "Teachers") {
 
-        if (showForm) {
+        // ================= LIST + SEARCH =================
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
 
-            // ===== ADD / EDIT FORM =====
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-
                 Text(
-                    text = if (editIndex == null) "Add Teacher" else "Edit Teacher",
+                    text = "Teachers Management",
                     fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF333333)
                 )
 
-                OutlinedTextField(name, { name = it }, label = { Text("Teacher Name") })
-                OutlinedTextField(subject, { subject = it }, label = { Text("Subject") })
-                OutlinedTextField(phone, { phone = it }, label = { Text("Phone Number") })
-                OutlinedTextField(email, { email = it }, label = { Text("Email Address") })
+                Button(
+                    onClick = {
+                        editIndex = null
+                        clearTeacherForm {
+                            name = ""
+                            subject = ""
+                            phone = ""
+                            email = ""
+                        }
+                        showDialog = true
+                    }
+                ) {
+                    Text("+ Add")
+                }
+            }
 
+            Spacer(modifier = Modifier.height(8.dp))
+
+            OutlinedTextField(
+                value = searchQuery,
+                onValueChange = { searchQuery = it },
+                label = { Text("Search teachers") },
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            if (filteredTeachers.isEmpty()) {
+                Text("No teachers found", color = Color.Gray)
+            } else {
+                filteredTeachers.forEachIndexed { index, teacher ->
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 6.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .padding(12.dp)
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+
+                            Column {
+                                Text(teacher.name, fontWeight = FontWeight.Bold)
+                                Text("Subject: ${teacher.subject}")
+                                Text("Phone: ${teacher.phone}")
+                            }
+
+                            Row {
+                                IconButton(
+                                    onClick = {
+                                        editIndex = index
+                                        name = teacher.name
+                                        subject = teacher.subject
+                                        phone = teacher.phone
+                                        email = teacher.email
+                                        showDialog = true
+                                    }
+                                ) {
+//                                    Icon(Icons.Default.Edit, contentDescription = "Edit")
+                                }
+
+                                IconButton(
+                                    onClick = {
+                                        teachers = teachers.toMutableList().also {
+                                            it.removeAt(index)
+                                        }
+                                    }
+                                ) {
+//                                  indexindex  Icon(Icons.Default.Delete, contentDescription = "Delete")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // ================= ADD / EDIT DIALOG =================
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = { showDialog = false },
+            confirmButton = {
                 Button(
                     onClick = {
                         val teacher = Teacher(name, subject, phone, email)
@@ -71,107 +153,37 @@ fun TeachersScreen() {
                                 }
                             }
 
-                        // Reset
-                        name = ""
-                        subject = ""
-                        phone = ""
-                        email = ""
-                        editIndex = null
-                        showForm = false
-                    },
-                    modifier = Modifier.fillMaxWidth()
+                        showDialog = false
+                    }
                 ) {
                     Text("Save")
                 }
-            }
-
-        } else {
-
-            // ===== LIST + SEARCH =====
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            ) {
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(
-                        text = "Teachers Management",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color(0xFF333333)
-                    )
-
-                    Button(onClick = { showForm = true }) {
-                        Text("+ Add")
-                    }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDialog = false }) {
+                    Text("Cancel")
                 }
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                OutlinedTextField(
-                    value = searchQuery,
-                    onValueChange = { searchQuery = it },
-                    label = { Text("Search teachers") },
-                    modifier = Modifier.fillMaxWidth()
+            },
+            title = {
+                Text(
+                    text = if (editIndex == null) "Add Teacher" else "Edit Teacher",
+                    fontWeight = FontWeight.Bold
                 )
-
-                Spacer(modifier = Modifier.height(12.dp))
-
-                if (filteredTeachers.isEmpty()) {
-                    Text("No teachers found", color = Color.Gray)
-                } else {
-                    filteredTeachers.forEachIndexed { index, teacher ->
-                        Card(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 6.dp)
-                        ) {
-                            Row(
-                                modifier = Modifier
-                                    .padding(12.dp)
-                                    .fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
-                                Column {
-                                    Text(teacher.name, fontWeight = FontWeight.Bold)
-                                    Text("Subject: ${teacher.subject}")
-                                    Text("Phone: ${teacher.phone}")
-                                }
-
-                                Row {
-                                    IconButton(
-                                        onClick = {
-                                            editIndex = index
-                                            name = teacher.name
-                                            subject = teacher.subject
-                                            phone = teacher.phone
-                                            email = teacher.email
-                                            showForm = true
-                                        }
-                                    ) {
-//                                        Icon(Icons.Default.Edit, contentDescription = "Edit")
-                                    }
-
-                                    IconButton(
-                                        onClick = {
-                                            teachers = teachers.toMutableList().also {
-                                                it.removeAt(index)
-                                            }
-                                        }
-                                    ) {
-//                                        Icon(Icons.Default.Delete, contentDescription = "Delete")
-                                    }
-                                }
-                            }
-                        }
-                    }
+            },
+            text = {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    OutlinedTextField(name, { name = it }, label = { Text("Teacher Name") })
+                    OutlinedTextField(subject, { subject = it }, label = { Text("Subject") })
+                    OutlinedTextField(phone, { phone = it }, label = { Text("Phone Number") })
+                    OutlinedTextField(email, { email = it }, label = { Text("Email Address") })
                 }
             }
-        }
+        )
     }
 }
 
+private fun clearTeacherForm(onClear: () -> Unit) {
+    onClear()
+}
