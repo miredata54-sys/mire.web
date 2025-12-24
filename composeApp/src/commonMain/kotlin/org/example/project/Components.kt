@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.painterResource
 import mire_data_app.composeapp.generated.resources.Res
+import mire_data_app.composeapp.generated.resources.coat_of_arms_of_somalia_1__1_
 import mire_data_app.composeapp.generated.resources.graduation_cap
 
 @Composable
@@ -38,7 +39,7 @@ fun Sidebar(
     ) {
         // Logo/Icon
         EducationIcon()
-        
+
         // Navigation Menu
         Column(
             modifier = Modifier.fillMaxWidth(),
@@ -54,7 +55,7 @@ fun Sidebar(
                 "Exam",
                 "Settings"
             )
-            
+
             menuItems.forEach { item ->
                 Box(
                     modifier = Modifier
@@ -86,11 +87,11 @@ fun MainContentArea(
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.White)
+                .background(Color(0xFFF0F1F3))
                 .padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
@@ -106,7 +107,7 @@ fun MainContentArea(
                     fontWeight = FontWeight.Bold,
                     color = Color(0xFF333333)
                 )
-                
+
                 // Search Bar
                 var searchText by remember { mutableStateOf("") }
                 OutlinedTextField(
@@ -135,7 +136,7 @@ fun MainContentArea(
                     singleLine = true
                 )
             }
-            
+
             content()
         }
     }
@@ -154,7 +155,7 @@ fun StatCard(
             .height(120.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(Color.White)
-            .shadow(2.dp, RoundedCornerShape(8.dp))
+            .shadow(0.dp, RoundedCornerShape(8.dp))
     ) {
         Row(
             modifier = Modifier
@@ -169,9 +170,9 @@ fun StatCard(
                     .fillMaxHeight()
                     .background(barColor, RoundedCornerShape(2.dp))
             )
-            
+
             Spacer(modifier = Modifier.width(16.dp))
-            
+
             // Icon
             Box(
                 modifier = Modifier.size(48.dp),
@@ -179,9 +180,9 @@ fun StatCard(
             ) {
                 icon()
             }
-            
+
             Spacer(modifier = Modifier.width(16.dp))
-            
+
             // Text content
             Column(
                 modifier = Modifier.weight(1f),
@@ -229,7 +230,7 @@ fun WelcomeCard(
                     )
                 )
         )
-        
+
         // Content Row
         Row(
             modifier = Modifier
@@ -250,7 +251,7 @@ fun WelcomeCard(
                     color = Color(0xFFE9D5FF).copy(alpha = 0.85f), // Light grey/purple
                     fontWeight = FontWeight.Medium
                 )
-                
+
                 // Welcome message
                 Text(
                     text = "Welcome back, John!",
@@ -259,7 +260,7 @@ fun WelcomeCard(
                     fontWeight = FontWeight.Bold,
                     lineHeight = 38.sp
                 )
-                
+
                 // Subtitle
                 Text(
                     text = "Always stay updated in your student portal",
@@ -268,7 +269,7 @@ fun WelcomeCard(
                     fontWeight = FontWeight.Normal
                 )
             }
-            
+
             // Right side - Graduation cap icon
             Box(
                 modifier = Modifier
@@ -277,7 +278,7 @@ fun WelcomeCard(
                 contentAlignment = Alignment.Center
             ) {
                 Image(
-                    painter = painterResource(Res.drawable.graduation_cap),
+                    painter = painterResource(Res.drawable.coat_of_arms_of_somalia_1__1_),
                     contentDescription = "Graduation Cap",
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Fit

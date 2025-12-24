@@ -1,12 +1,17 @@
 package org.example.project
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import mire_data_app.composeapp.generated.resources.Res
+import mire_data_app.composeapp.generated.resources.coat_of_arms_of_somalia_1__1_
+import org.jetbrains.compose.resources.painterResource
 
 data class Student(
     val fullName: String,
@@ -132,7 +137,12 @@ fun StudentsScreen() {
                                         showDialog = true
                                     }
                                 ) {
-//                                    Icon(Icons.Default.Edit, contentDescription = "Edit")
+                                    Image(
+                                        painter = painterResource(Res.drawable.coat_of_arms_of_somalia_1__1_),
+                                        contentDescription = "Graduation Cap",
+                                        modifier = Modifier.fillMaxSize(),
+                                        contentScale = ContentScale.Fit
+                                    )
                                 }
 
                                 IconButton(
@@ -142,7 +152,12 @@ fun StudentsScreen() {
                                         }
                                     }
                                 ) {
-//                                    Icon(Icons.Default.Delete, contentDescription = "Delete")
+                                    Image(
+                                        painter = painterResource(Res.drawable.coat_of_arms_of_somalia_1__1_),
+                                        contentDescription = "Graduation Cap",
+                                        modifier = Modifier.fillMaxSize(),
+                                        contentScale = ContentScale.Fit
+                                    )
                                 }
                             }
                         }
