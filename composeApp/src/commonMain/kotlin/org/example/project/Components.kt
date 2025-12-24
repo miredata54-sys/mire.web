@@ -273,7 +273,7 @@ fun WelcomeCard(
             Box(
                 modifier = Modifier
                     .size(120.dp)
-                    .offset(x = 16.dp), // Slightly overlapping the edge
+                    .offset(x = 16.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Image(

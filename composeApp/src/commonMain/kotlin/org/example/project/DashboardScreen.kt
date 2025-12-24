@@ -40,8 +40,8 @@ fun DashboardScreen() {
                     StatCard(
                         title = "Students",
                         value = "25000",
-                        barColor = Color(0xFF6B46C1), // Dark purple
                         icon = { GraduationCapIcon(color = Color(0xFF6B46C1)) },
+                        barColor = Color(0xFF6B46C1), // Dark purple
                         modifier = Modifier.weight(1f)
                     )
                     

@@ -1,25 +1,175 @@
 package org.example.project
 
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
+data class Parent(
+    val name: String,
+    val phone: String,
+    val email: String,
+    val studentName: String
+)
 
 @Composable
 fun ParentsScreen() {
+
+    var parents by remember { mutableStateOf(listOf<Parent>()) }
+    var showForm by remember { mutableStateOf(false) }
+    var editIndex by remember { mutableStateOf<Int?>(null) }
+    var searchQuery by remember { mutableStateOf("") }
+
+    // Form state
+    var name by remember { mutableStateOf("") }
+    var phone by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var studentName by remember { mutableStateOf("") }
+
+    val filteredParents = parents.filter {
+        it.name.contains(searchQuery, true) ||
+                it.studentName.contains(searchQuery, true)
+    }
+
     MainContentArea(title = "Parents") {
-        Text(
-            text = "Parents Management",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color(0xFF333333)
-        )
-        Text(
-            text = "Manage parent accounts and communication.",
-            fontSize = 16.sp,
-            color = Color.Gray
-        )
+
+        if (showForm) {
+
+            // ===== ADD / EDIT FORM =====
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+
+                Text(
+                    text = if (editIndex == null) "Add Parent" else "Edit Parent",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
+                )
+
+                OutlinedTextField(name, { name = it }, label = { Text("Parent Name") })
+                OutlinedTextField(phone, { phone = it }, label = { Text("Phone Number") })
+                OutlinedTextField(email, { email = it }, label = { Text("Email Address") })
+                OutlinedTextField(studentName, { studentName = it }, label = { Text("Student Name") })
+
+                Button(
+                    onClick = {
+                        val parent = Parent(name, phone, email, studentName)
+
+                        parents =
+                            if (editIndex == null) {
+                                parents + parent
+                            } else {
+                                parents.toMutableList().also {
+                                    it[editIndex!!] = parent
+                                }
+                            }
+
+                        // Reset
+                        name = ""
+                        phone = ""
+                        email = ""
+                        studentName = ""
+                        editIndex = null
+                        showForm = false
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Save")
+                }
+            }
+
+        } else {
+
+            // ===== LIST + SEARCH =====
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = "Parents Management",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+
+                    Button(onClick = { showForm = true }) {
+                        Text("+ Add")
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                OutlinedTextField(
+                    value = searchQuery,
+                    onValueChange = { searchQuery = it },
+                    label = { Text("Search parents") },
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                if (filteredParents.isEmpty()) {
+                    Text("No parents found", color = Color.Gray)
+                } else {
+                    filteredParents.forEachIndexed { index, parent ->
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 6.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .padding(12.dp)
+                                    .fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Column {
+                                    Text(parent.name, fontWeight = FontWeight.Bold)
+                                    Text("Student: ${parent.studentName}")
+                                    Text("Phone: ${parent.phone}")
+                                }
+
+                                Row {
+                                    IconButton(
+                                        onClick = {
+                                            editIndex = index
+                                            name = parent.name
+                                            phone = parent.phone
+                                            email = parent.email
+                                            studentName = parent.studentName
+                                            showForm = true
+                                        }
+                                    ) {
+//                                        Icon(Icons.Default.Edit, contentDescription = "Edit")
+                                    }
+
+                                    IconButton(
+                                        onClick = {
+                                            parents = parents.toMutableList().also {
+                                                it.removeAt(index)
+                                            }
+                                        }
+                                    ) {
+//                                        Icon(Icons.Default.Delete, contentDescription = "Delete")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
-
