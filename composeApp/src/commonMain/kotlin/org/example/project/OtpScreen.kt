@@ -20,9 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun LoginScreen(onLoginClick: () -> Unit = {}) {
+fun OtpScreen(onLoginClick: () -> Unit = {}) {
     var username by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
@@ -74,7 +73,7 @@ fun LoginScreen(onLoginClick: () -> Unit = {}) {
                 onValueChange = { username = it },
                 placeholder = {
                     Text(
-                        text = "email",
+                        text = "enter Otp",
                         color = Color.Gray.copy(alpha = 0.6f),
                         fontSize = 16.sp
                     )
@@ -109,7 +108,7 @@ fun LoginScreen(onLoginClick: () -> Unit = {}) {
                 )
             ) {
                 Text(
-                    text = "Send OTP",
+                    text = "login",
                     color = Color(0xFFFFA500), // Yellow-orange
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
