@@ -1,4 +1,4 @@
-package org.example.project
+package org.example
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
@@ -17,21 +17,21 @@ fun App() {
 
     MaterialTheme {
         when (currentScreen) {
-            Screen.LOGIN -> LoginScreen(
+            Screen.LOGIN -> _root_ide_package_.org.example.project.LoginScreen(
                 onLoginClick = {
                     // Marka login la dhaho
                     currentScreen = Screen.OTP
                 }
             )
 
-            Screen.OTP -> OtpScreen(
+            Screen.OTP -> _root_ide_package_.org.example.project.OtpScreen(
                 onLoginClick = {
                     // Marka OTP sax noqdo
                     currentScreen = Screen.DASHBOARD
                 }
             )
 
-            Screen.DASHBOARD -> DashboardScreen()
+            Screen.DASHBOARD -> _root_ide_package_.org.example.project.DashboardScreen()
         }
     }
 }

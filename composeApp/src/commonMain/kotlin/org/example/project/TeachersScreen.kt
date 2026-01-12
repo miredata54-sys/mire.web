@@ -1,19 +1,25 @@
 package org.example.project
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.key.Key.Companion.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import mire_data_app.composeapp.generated.resources.Res
+import mire_data_app.composeapp.generated.resources.deleta
+import mire_data_app.composeapp.generated.resources.edit_
+import org.jetbrains.compose.resources.painterResource
 
 data class Teacher(
     val name: String,
     val subject: String,
     val phone: String,
-    val email: String
+    val pic: String
 )
 
 @Composable
@@ -28,7 +34,7 @@ fun TeachersScreen() {
     var name by remember { mutableStateOf("") }
     var subject by remember { mutableStateOf("") }
     var phone by remember { mutableStateOf("") }
-    var email by remember { mutableStateOf("") }
+    var pic by remember { mutableStateOf("") }
 
     val filteredTeachers = teachers.filter {
         it.name.contains(searchQuery, true) ||
@@ -62,7 +68,7 @@ fun TeachersScreen() {
                             name = ""
                             subject = ""
                             phone = ""
-                            email = ""
+                            pic = ""
                         }
                         showDialog = true
                     }
@@ -111,11 +117,17 @@ fun TeachersScreen() {
                                         name = teacher.name
                                         subject = teacher.subject
                                         phone = teacher.phone
-                                        email = teacher.email
+                                        pic = teacher.pic
                                         showDialog = true
                                     }
                                 ) {
-//                                    Icon(Icons.Default.Edit, contentDescription = "Edit")
+                                    Image(
+                                        painter = painterResource(Res.drawable.edit_),
+                                        contentDescription = "Profile Picture",
+
+                                        modifier = Modifier
+                                    )
+                                    Color(0xFF000000)
                                 }
 
                                 IconButton(
@@ -125,7 +137,13 @@ fun TeachersScreen() {
                                         }
                                     }
                                 ) {
-//                                  indexindex  Icon(Icons.Default.Delete, contentDescription = "Delete")
+                                    Image(
+                                        painter = painterResource(Res.drawable.deleta),
+                                        contentDescription = "Profile Picture",
+
+                                        modifier = Modifier
+                                    )
+                                    Color(0xFFFF0000)
                                 }
                             }
                         }
@@ -142,7 +160,7 @@ fun TeachersScreen() {
             confirmButton = {
                 Button(
                     onClick = {
-                        val teacher = Teacher(name, subject, phone, email)
+                        val teacher = Teacher(name, subject, phone, pic)
 
                         teachers =
                             if (editIndex == null) {
@@ -177,7 +195,7 @@ fun TeachersScreen() {
                     OutlinedTextField(name, { name = it }, label = { Text("Teacher Name") })
                     OutlinedTextField(subject, { subject = it }, label = { Text("Subject") })
                     OutlinedTextField(phone, { phone = it }, label = { Text("Phone Number") })
-                    OutlinedTextField(email, { email = it }, label = { Text("Email Address") })
+                    OutlinedTextField(pic, { pic = it }, label = { Text("Email Address") })
                 }
             }
         )

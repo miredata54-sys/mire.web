@@ -5,12 +5,15 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import mire_data_app.composeapp.generated.resources.Res
 import mire_data_app.composeapp.generated.resources.coat_of_arms_of_somalia_1__1_
+import mire_data_app.composeapp.generated.resources.deleta
+import mire_data_app.composeapp.generated.resources.edit_
 import org.jetbrains.compose.resources.painterResource
 
 data class Student(
@@ -138,11 +141,13 @@ fun StudentsScreen() {
                                     }
                                 ) {
                                     Image(
-                                        painter = painterResource(Res.drawable.coat_of_arms_of_somalia_1__1_),
-                                        contentDescription = "Graduation Cap",
-                                        modifier = Modifier.fillMaxSize(),
-                                        contentScale = ContentScale.Fit
+                                        painter = painterResource(Res.drawable.edit_),
+                                        contentDescription = "Profile Picture",
+
+                                        modifier = Modifier
                                     )
+                                    Color(0xFFFF0000)
+
                                 }
 
                                 IconButton(
@@ -153,11 +158,13 @@ fun StudentsScreen() {
                                     }
                                 ) {
                                     Image(
-                                        painter = painterResource(Res.drawable.coat_of_arms_of_somalia_1__1_),
-                                        contentDescription = "Graduation Cap",
-                                        modifier = Modifier.fillMaxSize(),
-                                        contentScale = ContentScale.Fit
+                                        painter = painterResource(Res.drawable.deleta),
+                                        contentDescription = "Profile Picture",
+
+                                        modifier = Modifier
                                     )
+                                    Color(0xFFFF0000)
+
                                 }
                             }
                         }

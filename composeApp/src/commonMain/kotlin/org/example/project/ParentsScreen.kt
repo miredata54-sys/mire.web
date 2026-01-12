@@ -1,5 +1,6 @@
 package org.example.project
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -8,6 +9,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import mire_data_app.composeapp.generated.resources.Res
+import mire_data_app.composeapp.generated.resources.deleta
+import mire_data_app.composeapp.generated.resources.edit_
+import org.jetbrains.compose.resources.painterResource
 
 data class Parent(
     val name: String,
@@ -114,7 +119,13 @@ fun ParentsScreen() {
                                         showDialog = true
                                     }
                                 ) {
-//                                    Icon(Icons.Default.Edit, contentDescription = "Edit")
+                                    Image(
+                                        painter = painterResource(Res.drawable.edit_),
+                                        contentDescription = "Profile Picture",
+
+                                        modifier = Modifier
+                                    )
+                                    Color(0xFF000000)
                                 }
 
                                 IconButton(
@@ -124,7 +135,14 @@ fun ParentsScreen() {
                                         }
                                     }
                                 ) {
-//                                    Icon(Icons.Default.Delete, contentDescription = "Delete")
+                                    Image(
+                                        painter = painterResource(Res.drawable.deleta),
+                                        contentDescription = "Profile Picture",
+
+                                        modifier = Modifier
+                                    )
+                                    Color(0xFFFF0000)
+
                                 }
                             }
                         }

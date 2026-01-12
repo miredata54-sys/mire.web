@@ -69,7 +69,7 @@ fun DashboardScreen() {
             "Students" -> StudentsScreen()
             "Teachers" -> TeachersScreen()
             "Parents" -> ParentsScreen()
-            "Library" -> LibraryScreen()
+            "adminsschools" -> adminschool()
             "Attendance" -> AttendanceScreen()
             "Exam" -> ExamScreen()
             "Settings" -> SettingsScreen()

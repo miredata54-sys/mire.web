@@ -50,7 +50,7 @@ fun Sidebar(
                 "Students",
                 "Teachers",
                 "Parents",
-                "Library",
+                "adminschool",
                 "Attendance",
                 "Exam",
                 "Settings"
@@ -163,7 +163,7 @@ fun StatCard(
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Colored vertical bar
+
             Box(
                 modifier = Modifier
                     .width(4.dp)
@@ -173,7 +173,7 @@ fun StatCard(
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            // Icon
+
             Box(
                 modifier = Modifier.size(48.dp),
                 contentAlignment = Alignment.Center
@@ -183,7 +183,7 @@ fun StatCard(
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            // Text content
+
             Column(
                 modifier = Modifier.weight(1f),
                 verticalArrangement = Arrangement.Center
@@ -217,21 +217,21 @@ fun WelcomeCard(
             .clip(RoundedCornerShape(20.dp))
             .shadow(4.dp, RoundedCornerShape(20.dp))
     ) {
-        // Purple gradient background
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .background(
                     brush = Brush.horizontalGradient(
                         colors = listOf(
-                            Color(0xFF8B5CF6), // Darker purple on left
-                            Color(0xFFC4B5FD)  // Lighter purple on right
+                            Color(0xFF8B5CF6),
+                            Color(0xFFC4B5FD)
                         )
                     )
                 )
         )
 
-        // Content Row
+
         Row(
             modifier = Modifier
                 .fillMaxSize()
@@ -239,20 +239,19 @@ fun WelcomeCard(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Left side - Text content
+
             Column(
                 modifier = Modifier.weight(1f),
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                // Date
+
                 Text(
-                    text = "September 4, 2023",
+                    text = "jan 4, 2026",
                     fontSize = 13.sp,
-                    color = Color(0xFFE9D5FF).copy(alpha = 0.85f), // Light grey/purple
+                    color = Color(0xFFE9D5FF).copy(alpha = 0.85f),
                     fontWeight = FontWeight.Medium
                 )
 
-                // Welcome message
                 Text(
                     text = "Welcome back, John!",
                     fontSize = 32.sp,
@@ -261,7 +260,7 @@ fun WelcomeCard(
                     lineHeight = 38.sp
                 )
 
-                // Subtitle
+
                 Text(
                     text = "Always stay updated in your student portal",
                     fontSize = 15.sp,

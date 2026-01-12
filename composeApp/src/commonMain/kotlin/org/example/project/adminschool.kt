@@ -7,7 +7,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun LibraryScreen() {
+fun adminschool() {
     MainContentArea(title = "Library") {
         Text(
             text = "Library Management",

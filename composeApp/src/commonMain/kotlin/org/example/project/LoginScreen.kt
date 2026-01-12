@@ -30,14 +30,14 @@ fun LoginScreen(onLoginClick: () -> Unit = {}) {
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFF4A90E2), // Blue background
+                        Color(0xFF4A90E2),
                         Color(0xFF357ABD)
                     )
                 )
             ),
         contentAlignment = Alignment.Center
     ) {
-        // Subtle topographic pattern overlay
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -53,7 +53,7 @@ fun LoginScreen(onLoginClick: () -> Unit = {}) {
                 )
         )
 
-        // Login card
+
         Column(
             modifier = Modifier
                 .width(400.dp)
@@ -74,7 +74,7 @@ fun LoginScreen(onLoginClick: () -> Unit = {}) {
                 onValueChange = { username = it },
                 placeholder = {
                     Text(
-                        text = "email",
+                        text = "MOBILE",
                         color = Color.Gray.copy(alpha = 0.6f),
                         fontSize = 16.sp
                     )

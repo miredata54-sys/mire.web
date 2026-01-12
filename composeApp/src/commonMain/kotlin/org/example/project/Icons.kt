@@ -51,7 +51,7 @@ fun EducationIcon(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .size(100.dp)
-            .background(Color.White), // Background cadaan
+            .background(Color.White),
         contentAlignment = Alignment.Center,
     ) {
         Image(
@@ -62,7 +62,6 @@ fun EducationIcon(modifier: Modifier = Modifier) {
     }
 }
 
-//dashboard image
 @Composable
 fun SchoolIcon(modifier: Modifier = Modifier) {
     Box(
