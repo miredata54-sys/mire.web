@@ -12,7 +12,6 @@ import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.painterResource
 import mire_data_app.composeapp.generated.resources.Res
 import mire_data_app.composeapp.generated.resources.coat_of_arms_of_somalia_1__1_
-import mire_data_app.composeapp.generated.resources.graduation_cap
 import mire_data_app.composeapp.generated.resources.parents
 import mire_data_app.composeapp.generated.resources.schools
 import mire_data_app.composeapp.generated.resources.student

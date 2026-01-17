@@ -14,7 +14,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,14 +28,13 @@ fun OtpScreen(onLoginClick: () -> Unit = {}) {
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFF4A90E2), // Blue background
+                        Color(0xFF4A90E2),
                         Color(0xFF357ABD)
                     )
                 )
             ),
         contentAlignment = Alignment.Center
     ) {
-        // Subtle topographic pattern overlay
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -52,7 +50,6 @@ fun OtpScreen(onLoginClick: () -> Unit = {}) {
                 )
         )
 
-        // Login card
         Column(
             modifier = Modifier
                 .width(400.dp)
@@ -67,13 +64,12 @@ fun OtpScreen(onLoginClick: () -> Unit = {}) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
-            // Username field
             OutlinedTextField(
                 value = username,
                 onValueChange = { username = it },
                 placeholder = {
                     Text(
-                        text = "enter Otp",
+                        text = " Code ",
                         color = Color.Gray.copy(alpha = 0.6f),
                         fontSize = 16.sp
                     )
@@ -95,8 +91,7 @@ fun OtpScreen(onLoginClick: () -> Unit = {}) {
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
             )
 
-            // Password field
-            // Login button
+
             Button(
                 onClick = { onLoginClick() },
                 modifier = Modifier
@@ -104,25 +99,24 @@ fun OtpScreen(onLoginClick: () -> Unit = {}) {
                     .height(50.dp),
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF2C3E50) // Dark blue
+                    containerColor = Color(0xFF2C3E50)
                 )
             ) {
                 Text(
                     text = "login",
-                    color = Color(0xFFFFA500), // Yellow-orange
+                    color = Color(0xFFFFA500),
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )
             }
 
-            // Recover Password link
             TextButton(
-                onClick = { /* Handle password recovery */ },
+                onClick = {  },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
                     text = "Recover Password",
-                    color = Color(0xFF2C3E50), // Dark blue
+                    color = Color(0xFF2C3E50),
                     fontSize = 14.sp,
                     textAlign = TextAlign.Center
                 )

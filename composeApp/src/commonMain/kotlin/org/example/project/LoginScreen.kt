@@ -14,7 +14,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -68,7 +67,6 @@ fun LoginScreen(onLoginClick: () -> Unit = {}) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
-            // Username field
             OutlinedTextField(
                 value = username,
                 onValueChange = { username = it },
@@ -95,9 +93,6 @@ fun LoginScreen(onLoginClick: () -> Unit = {}) {
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
             )
-
-            // Password field
-            // Login button
             Button(
                 onClick = { onLoginClick() },
                 modifier = Modifier
@@ -105,25 +100,25 @@ fun LoginScreen(onLoginClick: () -> Unit = {}) {
                     .height(50.dp),
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF2C3E50) // Dark blue
+                    containerColor = Color(0xFF2C3E50)
                 )
             ) {
                 Text(
-                    text = "Send OTP",
-                    color = Color(0xFFFFA500), // Yellow-orange
+                    text = "GET OTP",
+                    color = Color(0xFFFFA500),
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )
             }
 
-            // Recover Password link
+
             TextButton(
-                onClick = { /* Handle password recovery */ },
+                onClick = { },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
                     text = "Recover Password",
-                    color = Color(0xFF2C3E50), // Dark blue
+                    color = Color(0xFF2C3E50),
                     fontSize = 14.sp,
                     textAlign = TextAlign.Center
                 )

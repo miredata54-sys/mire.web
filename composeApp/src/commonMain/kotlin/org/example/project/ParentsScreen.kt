@@ -14,12 +14,6 @@ import mire_data_app.composeapp.generated.resources.deleta
 import mire_data_app.composeapp.generated.resources.edit_
 import org.jetbrains.compose.resources.painterResource
 
-data class Parent(
-    val name: String,
-    val phone: String,
-    val email: String,
-    val studentName: String
-)
 
 @Composable
 fun ParentsScreen() {
@@ -152,7 +146,6 @@ fun ParentsScreen() {
         }
     }
 
-    // ================= ADD / EDIT DIALOG =================
     if (showDialog) {
         AlertDialog(
             onDismissRequest = { showDialog = false },

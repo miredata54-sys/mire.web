@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -21,7 +20,6 @@ import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.painterResource
 import mire_data_app.composeapp.generated.resources.Res
 import mire_data_app.composeapp.generated.resources.coat_of_arms_of_somalia_1__1_
-import mire_data_app.composeapp.generated.resources.graduation_cap
 
 @Composable
 fun Sidebar(
@@ -32,15 +30,15 @@ fun Sidebar(
         modifier = Modifier
             .width(250.dp)
             .fillMaxHeight()
-            .background(Color(0xFF6B46C1)) // Dark purple
+            .background(Color(0xFF6B46C1))
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(32.dp)
     ) {
-        // Logo/Icon
+
         EducationIcon()
 
-        // Navigation Menu
+
         Column(
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(12.dp)
@@ -95,7 +93,7 @@ fun MainContentArea(
                 .padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
-            // Header
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -108,7 +106,6 @@ fun MainContentArea(
                     color = Color(0xFF333333)
                 )
 
-                // Search Bar
                 var searchText by remember { mutableStateOf("") }
                 OutlinedTextField(
                     value = searchText,
@@ -269,7 +266,7 @@ fun WelcomeCard(
                 )
             }
 
-            // Right side - Graduation cap icon
+
             Box(
                 modifier = Modifier
                     .size(120.dp)

@@ -24,10 +24,9 @@ fun DashboardScreen() {
                         .padding(16.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    // Welcome Card
+
                     WelcomeCard()
 
-                    // Statistics Cards
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(16.dp)

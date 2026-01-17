@@ -19,14 +19,14 @@ fun App() {
         when (currentScreen) {
             Screen.LOGIN -> _root_ide_package_.org.example.project.LoginScreen(
                 onLoginClick = {
-                    // Marka login la dhaho
+
                     currentScreen = Screen.OTP
                 }
             )
 
             Screen.OTP -> _root_ide_package_.org.example.project.OtpScreen(
                 onLoginClick = {
-                    // Marka OTP sax noqdo
+
                     currentScreen = Screen.DASHBOARD
                 }
             )

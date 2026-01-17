@@ -43,7 +43,7 @@ fun TeachersScreen() {
 
     MainContentArea(title = "Teachers") {
 
-        // ================= LIST + SEARCH =================
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -153,7 +153,6 @@ fun TeachersScreen() {
         }
     }
 
-    // ================= ADD / EDIT DIALOG =================
     if (showDialog) {
         AlertDialog(
             onDismissRequest = { showDialog = false },
