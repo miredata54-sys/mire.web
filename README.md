@@ -1,4 +1,4 @@
-This is a Kotlin Multiplatform project targeting Android, Web.
+this is app mobile and web that use schools 
 
 * [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
   It contains several subfolders:
