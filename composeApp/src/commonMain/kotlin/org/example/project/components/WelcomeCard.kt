@@ -1,0 +1,102 @@
+package org.example.project.components
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import org.jetbrains.compose.resources.painterResource
+import mire_data_app.composeapp.generated.resources.Res
+import mire_data_app.composeapp.generated.resources.coat_of_arms_of_somalia_1__1_
+@Composable
+fun WelcomeCard(
+    modifier: Modifier = Modifier
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(200.dp)
+            .clip(RoundedCornerShape(20.dp))
+            .shadow(4.dp, RoundedCornerShape(20.dp))
+    ) {
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    brush = Brush.horizontalGradient(
+                        colors = listOf(
+                            Color(0xFF8B5CF6),
+                            Color(0xFFC4B5FD)
+                        )
+                    )
+                )
+        )
+
+
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 32.dp, vertical = 24.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+
+                Text(
+                    text = "jan 4, 2026",
+                    fontSize = 13.sp,
+                    color = Color(0xFFE9D5FF).copy(alpha = 0.85f),
+                    fontWeight = FontWeight.Medium
+                )
+
+                Text(
+                    text = "Welcome back, John!",
+                    fontSize = 32.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                    lineHeight = 38.sp
+                )
+
+
+                Text(
+                    text = "Always stay updated in your student portal",
+                    fontSize = 15.sp,
+                    color = Color.White.copy(alpha = 0.95f),
+                    fontWeight = FontWeight.Normal
+                )
+            }
+
+
+            Box(
+                modifier = Modifier
+                    .size(120.dp)
+                    .offset(x = 16.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Image(
+                    painter = painterResource(Res.drawable.coat_of_arms_of_somalia_1__1_),
+                    contentDescription = "Graduation Cap",
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Fit
+                )
+            }
+        }
+    }
+}

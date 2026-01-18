@@ -1,4 +1,4 @@
-package org.example.project
+package org.example.project.ui.logincreens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -17,10 +17,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.example.project.components.PersonIcon
 
 @Composable
-fun OtpScreen(onLoginClick: () -> Unit = {}) {
+fun LoginScreen(onLoginClick: () -> Unit = {}) {
     var username by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
@@ -35,6 +37,7 @@ fun OtpScreen(onLoginClick: () -> Unit = {}) {
             ),
         contentAlignment = Alignment.Center
     ) {
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -49,6 +52,7 @@ fun OtpScreen(onLoginClick: () -> Unit = {}) {
                     )
                 )
         )
+
 
         Column(
             modifier = Modifier
@@ -69,7 +73,7 @@ fun OtpScreen(onLoginClick: () -> Unit = {}) {
                 onValueChange = { username = it },
                 placeholder = {
                     Text(
-                        text = " Code ",
+                        text = "MOBILE",
                         color = Color.Gray.copy(alpha = 0.6f),
                         fontSize = 16.sp
                     )
@@ -90,8 +94,6 @@ fun OtpScreen(onLoginClick: () -> Unit = {}) {
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
             )
-
-
             Button(
                 onClick = { onLoginClick() },
                 modifier = Modifier
@@ -103,15 +105,16 @@ fun OtpScreen(onLoginClick: () -> Unit = {}) {
                 )
             ) {
                 Text(
-                    text = "login",
+                    text = "GET OTP",
                     color = Color(0xFFFFA500),
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )
             }
 
+
             TextButton(
-                onClick = {  },
+                onClick = { },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(

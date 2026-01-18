@@ -2,6 +2,9 @@ package org.example
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
+import org.example.project.ui.dashboardscreens.dashboard_screen.DashboardScreen
+import org.example.project.ui.logincreens.LoginScreen
+import org.example.project.ui.otpscreens.OtpScreen
 import org.jetbrains.compose.ui.tooling.preview.Preview
 enum class Screen {
     LOGIN,
@@ -17,21 +20,21 @@ fun App() {
 
     MaterialTheme {
         when (currentScreen) {
-            Screen.LOGIN -> _root_ide_package_.org.example.project.LoginScreen(
+            Screen.LOGIN -> LoginScreen(
                 onLoginClick = {
 
                     currentScreen = Screen.OTP
                 }
             )
 
-            Screen.OTP -> _root_ide_package_.org.example.project.OtpScreen(
+            Screen.OTP -> OtpScreen(
                 onLoginClick = {
 
                     currentScreen = Screen.DASHBOARD
                 }
             )
 
-            Screen.DASHBOARD -> _root_ide_package_.org.example.project.DashboardScreen()
+            Screen.DASHBOARD -> DashboardScreen()
         }
     }
 }

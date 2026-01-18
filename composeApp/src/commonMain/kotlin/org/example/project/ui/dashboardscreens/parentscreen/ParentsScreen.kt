@@ -1,4 +1,4 @@
-package org.example.project
+package org.example.project.ui.dashboardscreens.parentscreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -6,44 +6,39 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.key.Key.Companion.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import mire_data_app.composeapp.generated.resources.Res
 import mire_data_app.composeapp.generated.resources.deleta
 import mire_data_app.composeapp.generated.resources.edit_
+import org.example.project.components.MainContentArea
+import org.example.project.ui.Parent
 import org.jetbrains.compose.resources.painterResource
 
-data class Teacher(
-    val name: String,
-    val subject: String,
-    val phone: String,
-    val pic: String
-)
 
 @Composable
-fun TeachersScreen() {
+fun ParentsScreen() {
 
-    var teachers by remember { mutableStateOf(listOf<Teacher>()) }
+    var parents by remember { mutableStateOf(listOf<Parent>()) }
     var showDialog by remember { mutableStateOf(false) }
     var editIndex by remember { mutableStateOf<Int?>(null) }
     var searchQuery by remember { mutableStateOf("") }
 
     // Form state
     var name by remember { mutableStateOf("") }
-    var subject by remember { mutableStateOf("") }
     var phone by remember { mutableStateOf("") }
-    var pic by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var studentName by remember { mutableStateOf("") }
 
-    val filteredTeachers = teachers.filter {
+    val filteredParents = parents.filter {
         it.name.contains(searchQuery, true) ||
-                it.subject.contains(searchQuery, true)
+                it.studentName.contains(searchQuery, true)
     }
 
-    MainContentArea(title = "Teachers") {
+    MainContentArea(title = "Parents") {
 
-
+        // ================= LIST + SEARCH =================
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -55,20 +50,19 @@ fun TeachersScreen() {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "Teachers Management",
+                    text = "Parents Management",
                     fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color(0xFF333333)
+                    fontWeight = FontWeight.Bold
                 )
 
                 Button(
                     onClick = {
                         editIndex = null
-                        clearTeacherForm {
+                        clearParentForm {
                             name = ""
-                            subject = ""
                             phone = ""
-                            pic = ""
+                            email = ""
+                            studentName = ""
                         }
                         showDialog = true
                     }
@@ -82,16 +76,16 @@ fun TeachersScreen() {
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
-                label = { Text("Search teachers") },
+                label = { Text("Search parents") },
                 modifier = Modifier.fillMaxWidth()
             )
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            if (filteredTeachers.isEmpty()) {
-                Text("No teachers found", color = Color.Gray)
+            if (filteredParents.isEmpty()) {
+                Text("No parents found", color = Color.Gray)
             } else {
-                filteredTeachers.forEachIndexed { index, teacher ->
+                filteredParents.forEachIndexed { index, parent ->
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -105,19 +99,19 @@ fun TeachersScreen() {
                         ) {
 
                             Column {
-                                Text(teacher.name, fontWeight = FontWeight.Bold)
-                                Text("Subject: ${teacher.subject}")
-                                Text("Phone: ${teacher.phone}")
+                                Text(parent.name, fontWeight = FontWeight.Bold)
+                                Text("Student: ${parent.studentName}")
+                                Text("Phone: ${parent.phone}")
                             }
 
                             Row {
                                 IconButton(
                                     onClick = {
                                         editIndex = index
-                                        name = teacher.name
-                                        subject = teacher.subject
-                                        phone = teacher.phone
-                                        pic = teacher.pic
+                                        name = parent.name
+                                        phone = parent.phone
+                                        email = parent.email
+                                        studentName = parent.studentName
                                         showDialog = true
                                     }
                                 ) {
@@ -132,7 +126,7 @@ fun TeachersScreen() {
 
                                 IconButton(
                                     onClick = {
-                                        teachers = teachers.toMutableList().also {
+                                        parents = parents.toMutableList().also {
                                             it.removeAt(index)
                                         }
                                     }
@@ -144,6 +138,7 @@ fun TeachersScreen() {
                                         modifier = Modifier
                                     )
                                     Color(0xFFFF0000)
+
                                 }
                             }
                         }
@@ -159,14 +154,14 @@ fun TeachersScreen() {
             confirmButton = {
                 Button(
                     onClick = {
-                        val teacher = Teacher(name, subject, phone, pic)
+                        val parent = Parent(name, phone, email, studentName)
 
-                        teachers =
+                        parents =
                             if (editIndex == null) {
-                                teachers + teacher
+                                parents + parent
                             } else {
-                                teachers.toMutableList().also {
-                                    it[editIndex!!] = teacher
+                                parents.toMutableList().also {
+                                    it[editIndex!!] = parent
                                 }
                             }
 
@@ -183,7 +178,7 @@ fun TeachersScreen() {
             },
             title = {
                 Text(
-                    text = if (editIndex == null) "Add Teacher" else "Edit Teacher",
+                    text = if (editIndex == null) "Add Parent" else "Edit Parent",
                     fontWeight = FontWeight.Bold
                 )
             },
@@ -191,16 +186,16 @@ fun TeachersScreen() {
                 Column(
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    OutlinedTextField(name, { name = it }, label = { Text("Teacher Name") })
-                    OutlinedTextField(subject, { subject = it }, label = { Text("Subject") })
+                    OutlinedTextField(name, { name = it }, label = { Text("Parent Name") })
                     OutlinedTextField(phone, { phone = it }, label = { Text("Phone Number") })
-                    OutlinedTextField(pic, { pic = it }, label = { Text("Email Address") })
+                    OutlinedTextField(email, { email = it }, label = { Text("Email Address") })
+                    OutlinedTextField(studentName, { studentName = it }, label = { Text("Student Name") })
                 }
             }
         )
     }
 }
 
-private fun clearTeacherForm(onClear: () -> Unit) {
+private fun clearParentForm(onClear: () -> Unit) {
     onClear()
 }
