@@ -67,7 +67,7 @@ fun WelcomeCard(
                 )
 
                 Text(
-                    text = "Welcome back, John!",
+                    text = "Welcome back, Isse!",
                     fontSize = 32.sp,
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
