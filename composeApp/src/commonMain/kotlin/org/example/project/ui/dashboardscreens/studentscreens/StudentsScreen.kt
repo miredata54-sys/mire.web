@@ -16,7 +16,7 @@ import org.jetbrains.compose.resources.painterResource
 
 data class Student(
     val fullName: String,
-    val dob: String,
+    val ID: String,
     val age: String,
     val gender: String,
     val grade: String,
@@ -36,7 +36,7 @@ fun StudentsScreen() {
 
     // Form state
     var fullName by remember { mutableStateOf("") }
-    var dob by remember { mutableStateOf("") }
+    var ID by remember { mutableStateOf("") }
     var age by remember { mutableStateOf("") }
     var grade by remember { mutableStateOf("") }
     var schoolName by remember { mutableStateOf("") }
@@ -58,7 +58,7 @@ fun StudentsScreen() {
                     clearForm(
                         onClear = {
                             fullName = ""
-                            dob = ""
+                            ID = ""
                             age = ""
                             grade = ""
                             schoolName = ""
@@ -127,7 +127,7 @@ fun StudentsScreen() {
                                     onClick = {
                                         editIndex = index
                                         fullName = student.fullName
-                                        dob = student.dob
+                                        ID = student.ID
                                         age = student.age
                                         gender = student.gender
                                         grade = student.grade
@@ -179,7 +179,7 @@ fun StudentsScreen() {
             confirmButton = {
                 Button(onClick = {
                     val student = Student(
-                        fullName, dob, age, gender, grade,
+                        fullName, ID, age, gender, grade,
                         schoolName, address, phone, email
                     )
 
@@ -213,7 +213,7 @@ fun StudentsScreen() {
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     OutlinedTextField(fullName, { fullName = it }, label = { Text("Full Name") })
-                    OutlinedTextField(dob, { dob = it }, label = { Text("DOB") })
+                    OutlinedTextField(ID, { ID = it }, label = { Text("ID") })
                     OutlinedTextField(age, { age = it }, label = { Text("Age") })
 
                     Text("Gender")
